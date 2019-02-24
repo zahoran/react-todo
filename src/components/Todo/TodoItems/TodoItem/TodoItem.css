@@ -1,0 +1,41 @@
+.TodoItem {
+    overflow: hidden;
+    text-align: left;
+}
+
+.TodoItem:hover {
+    background: lightgrey;
+    cursor: pointer;
+}
+
+.TodoItem:hover {
+    background: lightgrey;
+    cursor: pointer;
+}
+
+.TodoItem.completed {
+    background-color: lightgreen;
+    text-decoration: line-through;
+}
+
+.TodoItem.completed:hover {
+    background-color: #78D378;
+}
+
+.close {
+    position: absolute;
+    display: flex;
+    width: 40px;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.close:hover {
+    background-color: #f44336;
+    color: white;
+    opacity: 1;
+}

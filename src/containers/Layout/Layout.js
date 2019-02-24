@@ -1,12 +1,13 @@
 import React from 'react';
-import Header from '../../components/header/Header';
+import Toolbar from '../../components/Navigation/Toolbar/Toolbar';
+import TodoList from "../TodoList/TodoList";
 
 const layout = (props) => {
   return (
     <React.Fragment>
-      <Header />
+      <Toolbar />
       <main>
-        {props.children}
+        <TodoList />
       </main>
     </React.Fragment>
   )
