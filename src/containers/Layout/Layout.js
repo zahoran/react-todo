@@ -1,9 +1,15 @@
-import React, {Component} from 'react';
+import React from 'react';
+import Header from '../../components/header/Header';
 
-class Layout extends Component {
-  render() {
-    return <></>
-  }
-}
+const layout = (props) => {
+  return (
+    <React.Fragment>
+      <Header />
+      <main>
+        {props.children}
+      </main>
+    </React.Fragment>
+  )
+};
 
-export default Layout;
+export default layout;
