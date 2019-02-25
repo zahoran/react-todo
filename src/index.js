@@ -1,9 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
-import App from './App';
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';import App from './App';
 import * as serviceWorker from './serviceWorker';
+import axios from 'axios';
+
+//sample github project url for github component as a config.
+axios.defaults.baseURL = 'https://api.github.com/repos/facebook/create-react-app/issues';
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
