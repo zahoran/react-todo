@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import TodoForm from '../../components/Todo/TodoForm/TodoForm';
 import TodoItems from '../../components/Todo/TodoItems/TodoItems';
 import Wrapper from '../../components/UI/Wrapper/Wrapper';
+import TodoProgress from '../../components/Todo/TodoProgress/TodoProgress';
 
 class TodoList extends Component {
   state = {
@@ -38,7 +39,7 @@ class TodoList extends Component {
     const result = this.state.items.filter((item) => {
       return item.title === itemTitle;
     });
-    if(result.length) {
+    if (result.length) {
       console.log(itemTitle, "is already on the list");
     } else {
       const newItem = {
@@ -73,6 +74,7 @@ class TodoList extends Component {
         <TodoItems items={this.state.items}
                    toggleComplete={this.toggleCompleteItem}
                    delete={this.removeItem}/>
+        <TodoProgress items={this.state.items}/>
       </Wrapper>
     )
   }
