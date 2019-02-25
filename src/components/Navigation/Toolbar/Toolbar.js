@@ -1,4 +1,5 @@
 import React from 'react';
+import NavigationItems from '../NavigationItems/NavigationItems';
 
 const toolbar = () => {
   return (
@@ -7,12 +8,8 @@ const toolbar = () => {
         <div className="navbar-header">
           <span className="navbar-brand">TodoListApp</span>
         </div>
-        <ul>
-          <li>navitem</li>
-          <li>navitem</li>
-          <li>navitem</li>
-        </ul>
-        </div>
+        <NavigationItems />
+      </div>
     </nav>
   )
 };

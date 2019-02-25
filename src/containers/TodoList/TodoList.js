@@ -12,6 +12,24 @@ class TodoList extends Component {
     ]
   };
 
+  setState(state, callback) {
+    super.setState(state, this.saveCurrentState);
+    console.log('[Todo] setState');
+  }
+
+  componentDidMount() {
+    console.log('[Todo] componentDidMount');
+    let savedItems = localStorage.getItem('todo:items');
+    if (savedItems) {
+      savedItems = JSON.parse(savedItems);
+      this.setState({items: savedItems});
+    }
+  }
+
+  saveCurrentState() {
+    localStorage.setItem('todo:items', JSON.stringify(this.state.items));
+  }
+
   generateId = () => {
     return Math.floor(Math.random() * 90000) + 10000;
   };

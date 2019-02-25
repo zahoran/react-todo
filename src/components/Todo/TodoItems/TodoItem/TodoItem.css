@@ -1,11 +1,8 @@
 .TodoItem {
     overflow: hidden;
     text-align: left;
-}
-
-.TodoItem:hover {
-    background: lightgrey;
-    cursor: pointer;
+    text-overflow: ellipsis;
+    padding-right: 30px;
 }
 
 .TodoItem:hover {
@@ -29,6 +26,7 @@
     right: 0;
     bottom: 0;
     top: 0;
+    opacity: .5;
     flex-direction: column;
     justify-content: center;
     text-align: center;
