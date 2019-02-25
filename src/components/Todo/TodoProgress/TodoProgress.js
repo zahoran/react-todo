@@ -4,10 +4,10 @@ import './TodoProgress.css';
 const todoProgress = (props) => {
   const all = props.items.length;
   const completed = props.items.filter((item) => item.completed).length;
-  const percentage = parseInt(completed/all*100);
+  const percentage = all ? parseInt(completed/all*100): 100;
   return (
     <>
-      <p>My progress:</p>
+      <p>My Progress:</p>
       <div className="progress TodoProgress">
         <div className="progress-bar"
              role="progressbar"
