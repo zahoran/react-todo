@@ -1,0 +1,9 @@
+.NavItems a.active {
+    font-weight: bold;
+}
+.NavItems a:hover, .NavItems a:focus {
+    color: #777 !important;
+}
+.NavItems li {
+    min-width: 100px;
+}

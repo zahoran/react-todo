@@ -12,13 +12,13 @@ class TodoList extends Component {
     ]
   };
 
+  //whenever we update the state object, we save it in local storage.
   setState(state, callback) {
     super.setState(state, this.saveCurrentState);
-    console.log('[Todo] setState');
   }
 
+  //checks for available state stored in the browser
   componentDidMount() {
-    console.log('[Todo] componentDidMount');
     let savedItems = localStorage.getItem('todo:items');
     if (savedItems) {
       savedItems = JSON.parse(savedItems);
@@ -60,12 +60,9 @@ class TodoList extends Component {
 
   toggleCompleteItem = (itemId) => {
     const newItems = this.state.items;
-    for (let i = 0; i < newItems.length; i++) {
-      if (newItems[i].id === itemId) {
-        newItems[i].completed = !newItems[i].completed;
-        break;
-      }
-    }
+    const index = newItems.findIndex(
+      item => item.id === itemId);
+    newItems[index].completed = !newItems[index].completed;
     this.setState(newItems);
   };
 

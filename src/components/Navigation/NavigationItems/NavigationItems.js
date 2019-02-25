@@ -1,10 +1,17 @@
 import React from 'react';
-import {Link} from "react-router-dom";
+import {NavLink} from "react-router-dom";
+import './NavigationItems.css';
 
 const navigationItems = () => (
-  <ul className="nav navbar-nav">
-    <li><Link to="/todo">TodoList</Link></li>
-    <li><Link to="/github">GithubRepo</Link></li>
+  <ul className="nav navbar-nav NavItems">
+    <li>
+      <NavLink to="/todo"
+               activeClassName='active'>TodoList</NavLink >
+    </li>
+    <li>
+      <NavLink to="/github"
+               activeClassName='active'>GithubRepo</NavLink >
+    </li>
   </ul>
 );
 

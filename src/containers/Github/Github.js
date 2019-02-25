@@ -29,7 +29,7 @@ class Github extends Component {
   render() {
     return (
       <>
-        <Wrapper title="A github repo issues listed">
+        <Wrapper title="A github repo's listed issues">
           {this.state.error ? <h2 className="alert-warning">Something went wrong!</h2> :
             <ul className="list-group">
               {this.state.issues.map((issue) => {

@@ -15,6 +15,7 @@ const todoItems = (props) => {
   )
 };
 
+//define the necessary inputs for this component
 todoItems.propTypes = {
   items: PropTypes.array.isRequired,
   toggleComplete: PropTypes.func.isRequired,
