@@ -1,4 +1,5 @@
 import React from 'react';
+import {NavLink} from 'react-router-dom';
 import NavigationItems from '../NavigationItems/NavigationItems';
 
 const toolbar = () => {
@@ -6,9 +7,11 @@ const toolbar = () => {
     <nav className="navbar navbar-default">
       <div className="container-fluid">
         <div className="navbar-header">
-          <span className="navbar-brand">TodoListApp</span>
+          <NavLink to='/'>
+            <span className="navbar-brand">TodoListApp</span>
+          </NavLink>
         </div>
-        <NavigationItems />
+        <NavigationItems/>
       </div>
     </nav>
   )
