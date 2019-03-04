@@ -11,16 +11,14 @@ const todoForm = (props) => {
   };
 
   return (
-    <React.Fragment>
-      <form onSubmit={onSubmit} className="form-group">
-        <input type="text"
-               required
-               ref={inputEl}
-               id="task"
-               className="form-control"
-               placeholder="What do you need to do?"/>
-      </form>
-    </React.Fragment>
+    <form onSubmit={onSubmit} className="form-group">
+      <input type="text"
+             required
+             ref={inputEl}
+             id="task"
+             className="form-control"
+             placeholder="What do you need to do?"/>
+    </form>
   )
 };
 

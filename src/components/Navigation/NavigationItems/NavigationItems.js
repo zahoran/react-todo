@@ -6,11 +6,11 @@ const navigationItems = () => (
   <ul className="nav navbar-nav NavItems">
     <li>
       <NavLink to="/todo"
-               activeClassName='active'>TodoList</NavLink >
+               activeClassName='active'>TodoList</NavLink>
     </li>
     <li>
       <NavLink to="/github"
-               activeClassName='active'>GithubRepo</NavLink >
+               activeClassName='active'>GithubRepo</NavLink>
     </li>
   </ul>
 );

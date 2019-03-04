@@ -15,7 +15,6 @@ const reducer = (state = initialState, action) => {
         ...state,
         items: [...action.value]
       };
-
     case actionTypes.ADD_ITEM:
       const result = state.items.filter((item) => {
         return item.title === action.value;

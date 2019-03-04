@@ -7,9 +7,11 @@ import Wrapper from '../../components/UI/Wrapper/Wrapper';
 import TodoProgress from '../../components/Todo/TodoProgress/TodoProgress';
 import * as actionTypes from '../../store/actions';
 
-class TodoList extends Component {
+export class TodoList extends Component {
 
-  //checks for available state stored in the browser and load it
+  /**
+   * checks for available state stored in the browser and loads it
+   */
   componentDidMount() {
     let savedItems = localStorage.getItem('todo:items');
     if (savedItems) {
@@ -25,7 +27,7 @@ class TodoList extends Component {
         <TodoItems items={this.props.items}
                    toggleComplete={this.props.onToggleCompleteItem}
                    delete={this.props.onRemoveItem}/>
-        <TodoProgress items={this.props.items}/>
+        {this.props.items.length ? <TodoProgress items={this.props.items}/> : null}
       </Wrapper>
     )
   }
