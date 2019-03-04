@@ -1,47 +1,58 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
 import axios from 'axios';
 import Loader from '../../components/UI/Loader/Loader';
 import Wrapper from '../../components/UI/Wrapper/Wrapper';
+import * as actionTypes from "../../store/actions";
 
 class Github extends Component {
-  state = {
-    issues: [],
-    loading: false,
-    error: null
-  };
 
   componentDidMount() {
-    this.setState({loading: true});
-    axios.get(axios.defaults.baseURL)
-      .then((response) => {
-        this.setState({
-          issues: response.data
-        })
-      }).catch((error) => {
-      this.setState(
-        {error: error})
-    }).finally(() => {
-      this.setState(
-        {loading: false})
-    });
+    if(!this.props.issues.length) {
+      this.props.onSetLoading(true);
+      axios.get(axios.defaults.baseURL)
+        .then((response) => {
+          this.props.onSetIssues(response.data)
+        }).catch((error) => {
+        this.props.onSetError(error)
+      }).finally(() => {
+        this.props.onSetLoading(false)
+      });
+    }
   }
 
   render() {
     return (
       <>
         <Wrapper title="A github repo's listed issues">
-          {this.state.error ? <h2 className="alert-warning">Something went wrong!</h2> :
+          {this.props.error ? <h2 className="alert-warning">Something went wrong!</h2> :
             <ul className="list-group">
-              {this.state.issues.map((issue) => {
+              {this.props.issues.map((issue) => {
                 return <li className="list-group-item text-left"
                            key={issue.id}>{issue.url}</li>
               })}
             </ul>}
         </Wrapper>
-        {this.state.loading ? <Loader/> : null}
+        {this.props.loading ? <Loader/> : null}
       </>
     );
   }
 }
 
-export default Github;
+const mapStateToProps = state => {
+  return {
+    issues: state.github.issues,
+    loading: state.github.loading,
+    error: state.github.error
+  }
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onSetLoading: (loading) => dispatch({type: actionTypes.SET_LOADING, value: loading}),
+    onSetIssues: (issues) => dispatch({type: actionTypes.SET_ISSUES, value: issues}),
+    onSetError: (error) => dispatch({type: actionTypes.SET_ERROR, value: error})
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Github);

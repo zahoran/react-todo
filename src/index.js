@@ -1,18 +1,41 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {createStore} from 'redux';
+import {createStore, combineReducers, applyMiddleware} from 'redux';
 import {Provider} from 'react-redux';
 
 import './index.css';
-import '../node_modules/bootstrap/dist/css/bootstrap.min.css';import App from './App';
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import App from './App';
 import * as serviceWorker from './serviceWorker';
 import axios from 'axios';
-import reducer from './store/reducer';
+import todoListReducer from './store/reducers/todoList';
+import githubReducer from './store/reducers/github';
 
-//create store
-const store = createStore(reducer);
+const rootReducer = combineReducers({
+  todoList: todoListReducer,
+  github: githubReducer
+});
 
-//sample github project url for github component as a config.
+/**
+ * using middleware for saving the current state to local-storage
+ */
+const localStorageSaver = store => next => action => {
+  let result = next(action);
+  localStorage.setItem(
+    'todo:items',
+    JSON.stringify(store.getState().todoList.items)
+  );
+  return result
+};
+
+/**
+ * creating store
+ */
+const store = createStore(rootReducer, applyMiddleware(localStorageSaver));
+
+/**
+ * sample github project url for github component as a config.
+ */
 axios.defaults.baseURL = 'https://api.github.com/repos/facebook/create-react-app/issues';
 
 ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('root'));
