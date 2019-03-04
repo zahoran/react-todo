@@ -25,7 +25,7 @@ const reducer = (state = initialState, action) => {
           items: state.items.concat({
             title: action.value,
             completed: false,
-            id: new Date()
+            id: generateId()
           })
         };
       }
@@ -54,6 +54,10 @@ const reducer = (state = initialState, action) => {
     default:
       return state;
   }
+};
+
+const generateId = () => {
+  return Math.floor(Math.random() * 90000) + 10000;
 };
 
 export default reducer;
