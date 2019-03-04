@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
+
 import TodoForm from '../../components/Todo/TodoForm/TodoForm';
 import TodoItems from '../../components/Todo/TodoItems/TodoItems';
 import Wrapper from '../../components/UI/Wrapper/Wrapper';
@@ -70,14 +72,27 @@ class TodoList extends Component {
   render() {
     return (
       <Wrapper title="My ToDo List">
-        <TodoForm submit={this.addItem}/>
-        <TodoItems items={this.state.items}
+        <TodoForm submit={this.props.onAddItem}/>
+        <TodoItems items={this.props.items}
                    toggleComplete={this.toggleCompleteItem}
-                   delete={this.removeItem}/>
-        <TodoProgress items={this.state.items}/>
+                   delete={this.props.onRemoveItem}/>
+        <TodoProgress items={this.props.items}/>
       </Wrapper>
     )
   }
 }
 
-export default TodoList;
+const mapStateToProps = state => {
+  return {
+    items: state.todoItems
+  }
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onAddItem: (newItem) => dispatch({type: 'ADD_ITEM', value: newItem}),
+    onRemoveItem: (itemId) => dispatch({type: 'REMOVE_ITEM', value: itemId})
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(TodoList);
